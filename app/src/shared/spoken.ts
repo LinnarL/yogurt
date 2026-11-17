@@ -3,10 +3,13 @@
  * tells whisper and Apple's speech it is English, so nothing is guessed; Multi-language leaves whisper to hear which it is.
  * Not the interface's language, and not the one the notes are written in.
  */
-export type Spoken = 'en' | 'multi'
-export const SPOKEN: readonly Spoken[] = ['en', 'multi']
-export const spokenOf = (v: unknown): Spoken => (v === 'multi' ? 'multi' : 'en')
-/** what whisper is told for each chunk: English, or nothing (it detects, then keeps each track's language) */
-export const whisperLanguage = (s: Spoken): string | undefined => (s === 'en' ? 'en' : undefined)
+export type Spoken = 'en' | 'multi' | 'sv'
+export const SPOKEN: readonly Spoken[] = ['en', 'multi', 'sv']
+export const spokenOf = (v: unknown): Spoken => (v === 'multi' || v === 'sv' ? v : 'en')
+/**
+ * what whisper is told for each chunk: English, Swedish, or nothing (it detects, then keeps each track's language).
+ * Swedish is read by Pianissimo where that model is installed (asr/pianissimo), by whisper otherwise.
+ */
+export const whisperLanguage = (s: Spoken): string | undefined => (s === 'en' ? 'en' : s === 'sv' ? 'sv' : undefined)
 /** how many languages whisper can hear (whisper.cpp's g_lang list less Cantonese, which large-v3 added) */
 export const WHISPER_LANGUAGES = 99

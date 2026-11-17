@@ -717,5 +717,9 @@
   "Waiting for Yogurt AI to download": "Čekání na stažení Yogurt AI",
   "Stop summary": "Zastavit shrnutí",
   "Summary stopped.": "Vytváření shrnutí zastaveno.",
-  "This window couldn't be displayed.": "Toto okno se nepodařilo zobrazit."
+  "This window couldn't be displayed.": "Toto okno se nepodařilo zobrazit.",
+  "Swedish": "Švédština",
+  "Swedish speech model": "Model řeči pro švédštinu",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "Pianissimo čte švédštinu přesněji a vaše vlastní slova píše tak, jak jste je zadali. Běží na tomto počítači.",
+  "This computer is too slow for the Swedish speech model.": "Tento počítač je pro model řeči pro švédštinu příliš pomalý."
 }

@@ -64,3 +64,28 @@ describe('validateCatalog', () => {
     expect(validateCatalog({ ...shipped, models: [models[3]] }, licenses).ok).toBe(false)
   })
 })
+
+describe('the Swedish speech model', () => {
+  const sv = shipped.speechSv as { files: Array<Record<string, unknown>>; bytes: number } & Record<string, unknown>
+  it('is pinned file by file to a commit, with a hash for each, and its sizes add up', () => {
+    const r = validateCatalog(real, licenses)
+    expect(r.ok).toBe(true)
+    if (!r.ok) return
+    const m = r.catalog.speechSv!
+    expect(m.files.length).toBeGreaterThan(3)
+    for (const f of m.files) { expect(f.sha256).toMatch(sha); expect(f.url).toMatch(/\/resolve\/[a-f0-9]{40}\//) }
+    expect(m.files.reduce((n, f) => n + f.bytes, 0)).toBe(m.bytes)
+  })
+  it('is optional: an older catalog without it is still good', () => {
+    const { speechSv: _gone, ...older } = shipped
+    expect(validateCatalog(older, licenses).ok).toBe(true)
+  })
+  it('rejects a file without a hash, a file name that leaves the folder, wrong sizes and a disallowed license', () => {
+    const bad = (over: Record<string, unknown>) => validateCatalog({ ...shipped, speechSv: { ...sv, ...over } }, licenses).ok
+    expect(bad({ files: [{ ...sv.files[0], sha256: '' }] })).toBe(false)
+    expect(bad({ files: [{ ...sv.files[0], path: '../escape.onnx' }] })).toBe(false)
+    expect(bad({ files: [{ ...sv.files[0], path: '.hidden' }] })).toBe(false)
+    expect(bad({ bytes: sv.bytes + 1 })).toBe(false)
+    expect(bad({ license: 'CC-BY-NC-4.0' })).toBe(false)
+  })
+})

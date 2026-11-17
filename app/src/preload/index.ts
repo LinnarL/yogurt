@@ -1,7 +1,7 @@
 import type { WidgetLayout } from '../shared/widgetMorph'
 import { contextBridge, ipcRenderer } from 'electron'
 import { capabilities, platformOf } from '../shared/platform'
-import type { ChatView, ConversationSummary, ConversationView, NoteView, PromptAction, SetupState, UpdateStatus, WidgetView, YogurtApi } from '../shared/types'
+import type { ChatView, ConversationSummary, ConversationView, NoteView, PromptAction, SetupState, SwedishState, UpdateStatus, WidgetView, YogurtApi } from '../shared/types'
 
 const api: YogurtApi = {
   reportRendererError: report => ipcRenderer.send('renderer:error', report),
@@ -9,6 +9,16 @@ const api: YogurtApi = {
   os: platformOf(process.platform, process.env),
   capabilities: capabilities(platformOf(process.platform, process.env)),
   fake: process.env.YOGURT_FAKE === '1',
+  swedish: {
+    state: () => ipcRenderer.invoke('swedish:state'),
+    download: () => ipcRenderer.invoke('swedish:download'),
+    remove: () => ipcRenderer.invoke('swedish:remove'),
+    onState: (cb) => {
+      const on = (_e: unknown, s: SwedishState) => cb(s)
+      ipcRenderer.on('swedish:state', on)
+      return () => { ipcRenderer.removeListener('swedish:state', on) }
+    },
+  },
   setup: {
     state: () => ipcRenderer.invoke('setup:state'),
     onState: (cb) => {

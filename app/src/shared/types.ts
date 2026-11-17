@@ -32,6 +32,13 @@ export type YogurtApi = {
   capabilities: Capabilities
   /** test mode: stand-ins for models, audio and calendars */
   fake: boolean
+  /** the Swedish speech model (Pianissimo), an extra download picked in Settings → Language */
+  swedish: {
+    state(): Promise<SwedishState>
+    download(): Promise<void>
+    remove(): Promise<void>
+    onState(cb: (s: SwedishState) => void): () => void
+  }
   setup: {
     state(): Promise<SetupState>
     /** called with each change; returns the way to stop listening */
@@ -307,6 +314,12 @@ export type YogurtApi = {
     onGo(cb: (route: string, resumeRequested?: boolean) => void): () => void
   }
 }
+
+/**
+ * The Swedish speech model: absent (not downloaded), downloading, checking (being timed on this computer), ready,
+ * too-slow (timed, and this computer does not read it twice as fast as it plays) or failed. fraction: how much is downloaded, 0 to 1.
+ */
+export type SwedishState = { status: 'absent' | 'downloading' | 'checking' | 'ready' | 'too-slow' | 'failed'; fraction: number; bytes: number; error?: string }
 
 /** First-run setup: the models this Mac needs. Ready (recording works) once the speech model is in place; the notes models keep downloading after. */
 export type SetupState = {

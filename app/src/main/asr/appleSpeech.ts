@@ -57,11 +57,13 @@ export function pickSpeechLocale(o: { supported: string[]; detected?: string | n
  */
 export function wantedSpeechLocale(o: { spoken: Spoken; supported: string[]; last?: string | null; ui: string }): string | null {
   if (o.spoken === 'multi') return pickSpeechLocale(o)
+  // Swedish is read by Pianissimo or whisper, not by Apple's speech: no live words from it
+  if (o.spoken === 'sv') return null
   return pickSpeechLocale({ supported: o.supported.filter((l) => lang(l) === 'en'), detected: 'english', ui: o.ui })
 }
 
 /** Apple may keep listening in this locale under the spoken language picked (a recording switched to English only) */
-export const speechFits = (spoken: Spoken, locale: string): boolean => spoken === 'multi' || lang(locale) === 'en'
+export const speechFits = (spoken: Spoken, locale: string): boolean => spoken === 'multi' || (spoken !== 'sv' && lang(locale) === 'en')
 
 /** whisper heard another language than the one Apple listens in: its words are not to be trusted for this meeting */
 export const speechDisagrees = (locale: string, detected: string | null | undefined): boolean => {

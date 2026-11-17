@@ -644,5 +644,9 @@
   "Waiting for Yogurt AI to download": "Menunggu muat turun Yogurt AI",
   "Stop summary": "Hentikan ringkasan",
   "Summary stopped.": "Ringkasan dihentikan.",
-  "This window couldn't be displayed.": "Tetingkap ini tidak dapat dipaparkan."
+  "This window couldn't be displayed.": "Tetingkap ini tidak dapat dipaparkan.",
+  "Swedish": "Sweden",
+  "Swedish speech model": "Model pertuturan bahasa Sweden",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "Pianissimo memahami bahasa Sweden dengan lebih tepat dan mengeja perkataan anda sendiri seperti yang anda taip. Ia berjalan pada komputer ini.",
+  "This computer is too slow for the Swedish speech model.": "Komputer ini terlalu perlahan untuk model pertuturan bahasa Sweden."
 }

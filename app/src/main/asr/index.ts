@@ -9,7 +9,9 @@ import { appleSpeechAvailable, installSpeechLocale, readSpeechLocales, speechDis
 import { whisperLanguage, type Spoken } from '../../shared/spoken'
 import { createWhisperServer, recoverer, vadModelPath, whisperServerPath, type WhisperServer } from './server'
 import { createTranscriber, type Line, type Transcribe } from './transcribe'
-import { meetingWords, respell, whisperPrompt } from '../vocab'
+import { boostTerms, meetingWords, respell, whisperPrompt } from '../vocab'
+import { createPianissimoTranscriber } from './pianissimo'
+import type { Engine } from './pianissimo/engine'
 import type { TranscriptPartial } from '../../shared/types'
 import type { Chunk } from './chunker'
 
@@ -168,6 +170,8 @@ export function hookTranscription(p: {
   speech?: { host: SpeechHost; binary: string; ui: () => string; last: () => string | null; locales?: () => Promise<SpeechLocales>; install?: (locale: string) => Promise<boolean> }
   /** the spoken language picked in Settings or the note (English only when left out) */
   spoken?: () => Spoken
+  /** Swedish: Pianissimo reads it once the model is installed and fast enough here (ready); otherwise whisper does */
+  swedish?: { ready: () => boolean; engine: () => Promise<Engine> }
 }): () => void {
   idleMs = p.serverIdleMs ?? SERVER_IDLE_MS
   spokenNow = p.spoken ?? (() => 'en')
@@ -201,12 +205,29 @@ export function hookTranscription(p: {
     else {
       const model = p.modelPath()
       if (model) {
-        const srv = serverFor(model, p.pidFile, p.server)
-        srv.resetBudget()
-        // the model takes a few seconds to load: start now, so the first chunk does not wait for it
-        srv.url().catch((e) => console.error('whisper-server did not start', e))
-        transcribe = createTranscriber({ url: () => srv.url(), recover: recoverer(srv), onLanguage: (_t, lang, chars, locked) => hear(lang, chars, locked), prompt: promptOf,
-          language: () => whisperLanguage(spokenNow()) })
+        // whisper's server starts when a chunk needs it: a meeting read by Pianissimo from its first word never does
+        let whisper: Transcribe | undefined
+        const startWhisper = (): Transcribe => {
+          const srv = serverFor(model, p.pidFile, p.server)
+          srv.resetBudget()
+          // the model takes a few seconds to load: start now, so the first chunk does not wait for it
+          srv.url().catch((e) => console.error('whisper-server did not start', e))
+          return createTranscriber({ url: () => srv.url(), recover: recoverer(srv), onLanguage: (_t, lang, chars, locked) => hear(lang, chars, locked), prompt: promptOf,
+            language: () => whisperLanguage(spokenNow()) })
+        }
+        const sv = p.swedish
+        const swedishNow = () => !!sv && spokenNow() === 'sv' && sv.ready()
+        if (!swedishNow()) whisper = startWhisper()
+        const pianissimo = sv && createPianissimoTranscriber({ engine: sv.engine, onLanguage: (_t, lang, chars, locked) => hear(lang, chars, locked),
+          phrases: () => { const m = p.store.meeting?.(id); return m ? boostTerms(meetingWords(m)) : [] } })
+        // the picker can change under a meeting: each chunk goes to the engine that is right for it then
+        transcribe = async (c, o) => {
+          if (pianissimo && swedishNow()) {
+            // a model that cannot be loaded now should not silence the meeting: whisper reads this chunk
+            try { return await pianissimo(c, o) } catch (e) { console.error('Pianissimo failed, whisper reads this chunk', e) }
+          }
+          return (whisper ??= startWhisper())(c, o)
+        }
       } else {
         console.warn('no speech model yet: this meeting is recorded but not transcribed')
         setTimeout(() => warnOnce('no-speech-model'), NO_MODEL_NOTE_DELAY_MS)

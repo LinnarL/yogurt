@@ -50,6 +50,15 @@ const Binary = z.object({
   pending: z.boolean().optional(), bundled: z.boolean().optional(), note: z.string().optional(),
 }).refine((b) => b.pending || b.bundled || (b.url && b.sha256 && b.bytes), { message: 'needs url, sha256 and bytes unless pending or bundled' })
 
+/** the files of the Swedish speech model: plain relative names (no folders up, no hidden files), each with its hash */
+const SpeechSv = z.object({
+  id: Id, name: z.string().min(1), license: z.string().min(1), quant: z.string().min(1),
+  sizeGB: z.number().positive(), bytes: z.number().int().positive(), minMemGB: z.number().min(0),
+  files: z.array(z.object({
+    path: z.string().regex(/^(?!\.)[\w.-]+$/), url: z.string().url(), sha256: Sha, bytes: z.number().int().positive(),
+  })).min(1),
+})
+
 export const CatalogSchema = z.object({
   version: z.literal(1),
   models: z.array(Model).min(1),
@@ -57,6 +66,7 @@ export const CatalogSchema = z.object({
   asr: z.array(Asr).min(1),
   whisperServer: Binary,
   embedding: Embedding,
+  speechSv: SpeechSv.optional(),
 })
 
 export function validateCatalog(raw: unknown, allowedLicenses: string[]): { ok: true; catalog: Catalog } | { ok: false; errors: string[] } {
@@ -71,6 +81,9 @@ export function validateCatalog(raw: unknown, allowedLicenses: string[]): { ok: 
   }
   for (const a of parsed.data.asr) if (!allowedLicenses.includes(a.license)) errors.push(`${a.id}: license ${a.license} not allowed`)
   if (!allowedLicenses.includes(parsed.data.embedding.license)) errors.push(`${parsed.data.embedding.id}: license ${parsed.data.embedding.license} not allowed`)
+  const sv = parsed.data.speechSv
+  if (sv && !allowedLicenses.includes(sv.license)) errors.push(`${sv.id}: license ${sv.license} not allowed`)
+  if (sv && sv.files.reduce((n, f) => n + f.bytes, 0) !== sv.bytes) errors.push(`${sv.id}: the files' sizes do not add up to bytes`)
   if (!parsed.data.models.some((m) => m.starter)) errors.push('catalog needs at least one starter model')
   return errors.length ? { ok: false, errors } : { ok: true, catalog: parsed.data as Catalog }
 }

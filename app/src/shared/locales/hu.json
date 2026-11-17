@@ -674,5 +674,9 @@
   "Waiting for Yogurt AI to download": "Várakozás a Yogurt AI letöltésére",
   "Stop summary": "Összefoglalás leállítása",
   "Summary stopped.": "Az összefoglalás leállt.",
-  "This window couldn't be displayed.": "Ez az ablak nem jeleníthető meg."
+  "This window couldn't be displayed.": "Ez az ablak nem jeleníthető meg.",
+  "Swedish": "Svéd",
+  "Swedish speech model": "Svéd beszédmodell",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "A Pianissimo pontosabban érti a svédet, és a saját szavaidat úgy írja, ahogy beírtad őket. Ezen a számítógépen fut.",
+  "This computer is too slow for the Swedish speech model.": "Ez a számítógép túl lassú a svéd beszédmodellhez."
 }

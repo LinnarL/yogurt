@@ -703,5 +703,9 @@
   "Waiting for Yogurt AI to download": "Se așteaptă descărcarea Yogurt AI",
   "Stop summary": "Oprește rezumatul",
   "Summary stopped.": "Rezumatul a fost oprit.",
-  "This window couldn't be displayed.": "Această fereastră nu a putut fi afișată."
+  "This window couldn't be displayed.": "Această fereastră nu a putut fi afișată.",
+  "Swedish": "Suedeză",
+  "Swedish speech model": "Model vocal pentru suedeză",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "Pianissimo înțelege suedeza mai precis și scrie cuvintele tale așa cum le-ai introdus. Rulează pe acest computer.",
+  "This computer is too slow for the Swedish speech model.": "Acest computer este prea lent pentru modelul vocal pentru suedeză."
 }

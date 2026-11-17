@@ -36,8 +36,12 @@ import { hookPreferences } from './preferences'
 import { loginItemOn, openedAtLogin, setLoginItem, syncLoginItem } from './loginItem'
 import { createMedia } from './media'
 import { createTray, linuxTrayHost } from './tray'
-import { SetupController } from './setup'
+import { SetupController, friendly } from './setup'
 import { fakeMeasure, measureSpeed, speedClipPath, speedStore } from './asr/speedCheck'
+import { SwedishModel } from './asr/pianissimo/model'
+import { createEngineHolder } from './asr/pianissimo/holder'
+import { loadOrt } from './asr/pianissimo/ort'
+import { measureSwedish } from './asr/pianissimo/speed'
 import { vadModelPath, whisperServerPath } from './asr/server'
 import { openStore, type Store } from './store'
 import { calendars, eventIds, matchesEvent, setCalendarSelection, calendarStatus, createHelperRunner, helperPath, killAllHelpers, refreshCalendarStatus, requestCalendarAccess, runHelper, setCalendarSupported, setHelper, upcoming, type CalEvent } from './calendar'
@@ -506,6 +510,19 @@ app.whenReady().then(() => {
   ipcMain.handle('setup:state', () => setup.state)
   ipcMain.handle('setup:retry', () => setup.retry())
   ipcMain.handle('setup:skip-upgrade', () => setup.skipUpgrade())
+  // Swedish: Pianissimo, an extra speech model picked in Settings → Language (asr/pianissimo); whisper reads Swedish until it is in
+  const swedish = new SwedishModel({
+    dir: join(userDataDir(), 'models', 'asr-sv'), model: () => bundledCatalog.speechSv, friendly,
+    download: isFake() ? fakeDownloadDeps({ stepMs: Number(process.env.YOGURT_FAKE_STEP_MS ?? 5) }) : realDeps,
+    ...(isFake() ? { sha256Override: 'FAKE' } : {}),
+    measure: isFake() ? async () => Number(process.env.YOGURT_FAKE_SWEDISH_RTF ?? 0.1) : async (dir) => measureSwedish(dir, { ort: await loadOrt(), clip: speedClipPath() }),
+  })
+  const swedishEngine = createEngineHolder({ ort: loadOrt, dir: () => swedish.path() })
+  swedish.onState((st) => { win?.webContents.send('swedish:state', st); if (st.status !== 'ready') swedishEngine.stop() })
+  ipcMain.handle('swedish:state', () => swedish.state)
+  ipcMain.handle('swedish:download', () => { void swedish.start() })
+  ipcMain.handle('swedish:remove', () => swedish.remove())
+  app.on('will-quit', swedishEngine.stop)
   ipcMain.handle('setup:download-upgrade', () => setup.downloadUpgrade())
   const store = openStore(join(userDataDir(), 'yogurt.db'))
   storeRef = store
@@ -538,6 +555,7 @@ app.whenReady().then(() => {
     warn: (code) => tell({ t: 'warn', code }), pidFile: join(userDataDir(), 'whisper-server.pid'),
     // English only (the default) or Multi-language, read on each chunk so the footer's picker counts at once
     spoken: () => spokenSetting(loadSettings(settingsFile)),
+    swedish: { ready: () => !!swedish.path(), engine: () => swedishEngine.get() },
     // Apple's on-device speech for the live words (macOS 26, Apple Silicon); fake mode has a stand-in when a test asks
     speech: {
       host: { platform: process.platform, arch: process.arch, osRelease: isFake() ? (process.env.YOGURT_FAKE_SPEECH === '1' ? '25.4.0' : '24.0.0') : os.release() }, binary: audioHelperPath(),

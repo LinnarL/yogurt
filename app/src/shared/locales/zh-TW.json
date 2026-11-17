@@ -644,5 +644,9 @@
   "Waiting for Yogurt AI to download": "等待下載 Yogurt AI",
   "Stop summary": "停止摘要",
   "Summary stopped.": "已停止摘要。",
-  "This window couldn't be displayed.": "無法顯示此視窗。"
+  "This window couldn't be displayed.": "無法顯示此視窗。",
+  "Swedish": "瑞典語",
+  "Swedish speech model": "瑞典語語音模型",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "Pianissimo 辨識瑞典語更準確，並依您輸入的方式拼寫您自己的詞彙。它在這台電腦上執行。",
+  "This computer is too slow for the Swedish speech model.": "這台電腦執行瑞典語語音模型太慢了。"
 }

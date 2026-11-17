@@ -686,5 +686,9 @@
   "Waiting for Yogurt AI to download": "Venter på nedlasting av Yogurt AI",
   "Stop summary": "Stopp oppsummering",
   "Summary stopped.": "Oppsummering stoppet.",
-  "This window couldn't be displayed.": "Dette vinduet kunne ikke vises."
+  "This window couldn't be displayed.": "Dette vinduet kunne ikke vises.",
+  "Swedish": "Svensk",
+  "Swedish speech model": "Svensk talemodell",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "Pianissimo forstår svensk mer nøyaktig og staver dine egne ord slik du skrev dem. Den kjører på denne datamaskinen.",
+  "This computer is too slow for the Swedish speech model.": "Denne datamaskinen er for treg for den svenske talemodellen."
 }

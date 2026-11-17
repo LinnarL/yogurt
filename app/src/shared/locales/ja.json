@@ -644,5 +644,9 @@
   "Waiting for Yogurt AI to download": "Yogurt AIのダウンロードを待機中",
   "Stop summary": "要約を停止",
   "Summary stopped.": "要約を停止しました。",
-  "This window couldn't be displayed.": "このウィンドウを表示できませんでした。"
+  "This window couldn't be displayed.": "このウィンドウを表示できませんでした。",
+  "Swedish": "スウェーデン語",
+  "Swedish speech model": "スウェーデン語の音声モデル",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "Pianissimo はスウェーデン語をより正確に認識し、あなたが入力した独自の単語を入力どおりに表記します。このコンピューター上で動作します。",
+  "This computer is too slow for the Swedish speech model.": "このコンピューターはスウェーデン語の音声モデルには遅すぎます。"
 }

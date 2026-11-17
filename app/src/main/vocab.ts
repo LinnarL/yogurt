@@ -78,6 +78,18 @@ export function whisperPrompt(w: MeetingWords): string {
   return build()
 }
 
+/** the most boosted words Pianissimo takes for one meeting: the trie is cheap, but a list of thousands is not a list of words that matter */
+const MAX_BOOST = 300
+
+/**
+ * The words Pianissimo's phrase boosting prefers while it reads a meeting: the person's own list first, then the people
+ * (each name whole, and its parts: a first name alone is how people are called) and their companies. Spelled as typed.
+ */
+export function boostTerms(w: MeetingWords): string[] {
+  const parts = w.names.flatMap((n) => n.split(/\s+/)).filter((p) => p.length >= 3)
+  return unique([...(w.jargon ?? []), ...w.names, ...parts, ...w.companies]).slice(0, MAX_BOOST)
+}
+
 /** a rule for the notes and answers; empty when there is nothing to spell */
 export function spellingLine(w: MeetingWords): string {
   const words = unique([...(w.jargon ?? []), ...w.companies, ...w.names])

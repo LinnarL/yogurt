@@ -696,5 +696,9 @@
   "Waiting for Yogurt AI to download": "ממתינים להורדת Yogurt AI",
   "Stop summary": "עצירת הסיכום",
   "Summary stopped.": "הסיכום נעצר.",
-  "This window couldn't be displayed.": "לא ניתן היה להציג חלון זה."
+  "This window couldn't be displayed.": "לא ניתן היה להציג חלון זה.",
+  "Swedish": "שוודית",
+  "Swedish speech model": "מודל דיבור שוודי",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "Pianissimo מבין שוודית בצורה מדויקת יותר וכותב את המילים שלך בדיוק כפי שהקלדת אותן. הוא פועל במחשב הזה.",
+  "This computer is too slow for the Swedish speech model.": "המחשב הזה איטי מדי עבור מודל הדיבור השוודי."
 }

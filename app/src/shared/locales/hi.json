@@ -674,5 +674,9 @@
   "Waiting for Yogurt AI to download": "Yogurt AI डाउनलोड होने का इंतज़ार",
   "Stop summary": "सारांश रोकें",
   "Summary stopped.": "सारांश बनाना रोक दिया गया।",
-  "This window couldn't be displayed.": "यह विंडो दिखाई नहीं जा सकी।"
+  "This window couldn't be displayed.": "यह विंडो दिखाई नहीं जा सकी।",
+  "Swedish": "स्वीडिश",
+  "Swedish speech model": "स्वीडिश स्पीच मॉडल",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "Pianissimo स्वीडिश को अधिक सटीकता से समझता है और आपके अपने शब्दों को वैसे ही लिखता है जैसे आपने टाइप किए थे। यह इसी कंप्यूटर पर चलता है।",
+  "This computer is too slow for the Swedish speech model.": "यह कंप्यूटर स्वीडिश स्पीच मॉडल के लिए बहुत धीमा है।"
 }

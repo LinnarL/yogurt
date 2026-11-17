@@ -674,5 +674,9 @@
   "Waiting for Yogurt AI to download": "Yogurt AI indirmesi bekleniyor",
   "Stop summary": "Özeti durdur",
   "Summary stopped.": "Özet durduruldu.",
-  "This window couldn't be displayed.": "Bu pencere görüntülenemedi."
+  "This window couldn't be displayed.": "Bu pencere görüntülenemedi.",
+  "Swedish": "İsveççe",
+  "Swedish speech model": "İsveççe konuşma modeli",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "Pianissimo İsveççeyi daha doğru anlar ve kendi sözcüklerinizi yazdığınız gibi yazar. Bu bilgisayarda çalışır.",
+  "This computer is too slow for the Swedish speech model.": "Bu bilgisayar İsveççe konuşma modeli için çok yavaş."
 }

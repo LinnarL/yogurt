@@ -689,5 +689,9 @@
   "Waiting for Yogurt AI to download": "Αναμονή λήψης του Yogurt AI",
   "Stop summary": "Διακοπή σύνοψης",
   "Summary stopped.": "Η σύνοψη διακόπηκε.",
-  "This window couldn't be displayed.": "Δεν ήταν δυνατή η εμφάνιση αυτού του παραθύρου."
+  "This window couldn't be displayed.": "Δεν ήταν δυνατή η εμφάνιση αυτού του παραθύρου.",
+  "Swedish": "Σουηδικά",
+  "Swedish speech model": "Μοντέλο ομιλίας για σουηδικά",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "Το Pianissimo κατανοεί τα σουηδικά με μεγαλύτερη ακρίβεια και γράφει τις δικές σας λέξεις όπως τις πληκτρολογήσατε. Λειτουργεί σε αυτόν τον υπολογιστή.",
+  "This computer is too slow for the Swedish speech model.": "Αυτός ο υπολογιστής είναι πολύ αργός για το μοντέλο ομιλίας για σουηδικά."
 }

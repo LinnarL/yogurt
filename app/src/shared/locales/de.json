@@ -686,5 +686,9 @@
   "Waiting for Yogurt AI to download": "Warten auf den Download von Yogurt AI",
   "Stop summary": "Zusammenfassung stoppen",
   "Summary stopped.": "Zusammenfassung gestoppt.",
-  "This window couldn't be displayed.": "Dieses Fenster konnte nicht angezeigt werden."
+  "This window couldn't be displayed.": "Dieses Fenster konnte nicht angezeigt werden.",
+  "Swedish": "Schwedisch",
+  "Swedish speech model": "Schwedisches Sprachmodell",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "Pianissimo versteht Schwedisch genauer und schreibt deine eigenen Wörter so, wie du sie eingegeben hast. Es läuft auf diesem Computer.",
+  "This computer is too slow for the Swedish speech model.": "Dieser Computer ist zu langsam für das schwedische Sprachmodell."
 }

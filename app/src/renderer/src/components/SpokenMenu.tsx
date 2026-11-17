@@ -5,7 +5,7 @@ import { WHISPER_LANGUAGES, type Spoken } from '../../../shared/spoken'
 import { t } from '../../../shared/i18n'
 
 /** the names shown on the chip and in Settings */
-export const spokenName = (s: Spoken): string => (s === 'en' ? t('English') : t('Multi-language'))
+export const spokenName = (s: Spoken): string => (s === 'en' ? t('English') : s === 'sv' ? t('Swedish') : t('Multi-language'))
 
 /**
  * The spoken language under the note's bar, beside the mic, as a menu: English only (faster, nothing guessed) or
@@ -86,6 +86,10 @@ export function SpokenMenu() {
               </span>
             </span>
             {tick(spoken === 'multi')}
+          </button>
+          <button role="menuitemradio" aria-checked={spoken === 'sv'} data-testid="spoken-sv" onClick={() => choose('sv')} className={row}>
+            <span>{t('Swedish')}</span>
+            {tick(spoken === 'sv')}
           </button>
         </div>
       )}

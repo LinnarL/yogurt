@@ -244,5 +244,21 @@
     "sha256": "b5ce9d77a3fc4b3b39ccb5643c36777911cc4eb46a66962eadfa3f5f60490d63",
     "bytes": 333590944,
     "dims": 512
+  },
+  "speechSv": {
+    "id": "pianissimo-sv-int8",
+    "name": "Pianissimo (Swedish)",
+    "license": "CC-BY-4.0",
+    "quant": "int8",
+    "sizeGB": 0.66,
+    "bytes": 660933296,
+    "minMemGB": 8,
+    "files": [
+      { "path": "nemo128.onnx", "url": "https://huggingface.co/KlangAI/pianissimo-sv-onnx/resolve/63730c6021234f26b9bbae9a07a04fec39e7a52e/nemo128.onnx", "sha256": "5b4a84c52eeaa615dc46d781cc7e4598f9b432184831d57493c48adcd01371a9", "bytes": 138824 },
+      { "path": "encoder-model.int8.onnx", "url": "https://huggingface.co/KlangAI/pianissimo-sv-onnx/resolve/63730c6021234f26b9bbae9a07a04fec39e7a52e/encoder-model.int8.onnx", "sha256": "13288a5f4f009bf6bf8a3260044d098f6922e8caf1c564521d4962fa5749f66c", "bytes": 630313965 },
+      { "path": "decoder_joint-model.int8.onnx", "url": "https://huggingface.co/KlangAI/pianissimo-sv-onnx/resolve/63730c6021234f26b9bbae9a07a04fec39e7a52e/decoder_joint-model.int8.onnx", "sha256": "0f9213242acd8874f2717c5e3cdb888d4e7673ddf3abb9ee3a2fd2eaf0acdd03", "bytes": 30025652 },
+      { "path": "vocab.txt", "url": "https://huggingface.co/KlangAI/pianissimo-sv-onnx/resolve/63730c6021234f26b9bbae9a07a04fec39e7a52e/vocab.txt", "sha256": "d58544679ea4bc6ac563d1f545eb7d474bd6cfa467f0a6e2c1dc1c7d37e3c35d", "bytes": 93939 },
+      { "path": "tokenizer.model", "url": "https://huggingface.co/KlangAI/pianissimo-sv-onnx/resolve/63730c6021234f26b9bbae9a07a04fec39e7a52e/tokenizer.model", "sha256": "eacec2b0a77f336d4a2ca4a25a7047575d3c2b74de47e997f4c205126ed3135e", "bytes": 360916 }
+    ]
   }
 }

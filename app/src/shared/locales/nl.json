@@ -686,5 +686,9 @@
   "Waiting for Yogurt AI to download": "Wachten op de download van Yogurt AI",
   "Stop summary": "Samenvatting stoppen",
   "Summary stopped.": "Samenvatting gestopt.",
-  "This window couldn't be displayed.": "Dit venster kon niet worden weergegeven."
+  "This window couldn't be displayed.": "Dit venster kon niet worden weergegeven.",
+  "Swedish": "Zweeds",
+  "Swedish speech model": "Zweeds spraakmodel",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "Pianissimo verstaat Zweeds nauwkeuriger en spelt je eigen woorden zoals je ze hebt getypt. Het draait op deze computer.",
+  "This computer is too slow for the Swedish speech model.": "Deze computer is te langzaam voor het Zweedse spraakmodel."
 }

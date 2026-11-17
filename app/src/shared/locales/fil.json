@@ -686,5 +686,9 @@
   "Waiting for Yogurt AI to download": "Hinihintay ang pag-download ng Yogurt AI",
   "Stop summary": "Ihinto ang buod",
   "Summary stopped.": "Nahinto ang paggawa ng buod.",
-  "This window couldn't be displayed.": "Hindi maipakita ang window na ito."
+  "This window couldn't be displayed.": "Hindi maipakita ang window na ito.",
+  "Swedish": "Swedish",
+  "Swedish speech model": "Swedish speech model",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "Mas tumpak na nauunawaan ng Pianissimo ang Swedish at isinusulat nito ang sarili mong mga salita ayon sa pagkaka-type mo. Tumatakbo ito sa computer na ito.",
+  "This computer is too slow for the Swedish speech model.": "Masyadong mabagal ang computer na ito para sa Swedish speech model."
 }

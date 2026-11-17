@@ -692,5 +692,9 @@
   "Waiting for Yogurt AI to download": "Odotetaan Yogurt AI:n latausta",
   "Stop summary": "Pysäytä yhteenveto",
   "Summary stopped.": "Yhteenvedon luonti pysäytetty.",
-  "This window couldn't be displayed.": "Tätä ikkunaa ei voitu näyttää."
+  "This window couldn't be displayed.": "Tätä ikkunaa ei voitu näyttää.",
+  "Swedish": "Ruotsi",
+  "Swedish speech model": "Ruotsin puhemalli",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "Pianissimo ymmärtää ruotsia tarkemmin ja kirjoittaa omat sanasi niin kuin ne kirjoitit. Se toimii tällä tietokoneella.",
+  "This computer is too slow for the Swedish speech model.": "Tämä tietokone on liian hidas ruotsin puhemallille."
 }

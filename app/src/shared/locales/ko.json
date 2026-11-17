@@ -644,5 +644,9 @@
   "Waiting for Yogurt AI to download": "Yogurt AI 다운로드 대기 중",
   "Stop summary": "요약 중지",
   "Summary stopped.": "요약이 중지되었습니다.",
-  "This window couldn't be displayed.": "이 창을 표시할 수 없습니다."
+  "This window couldn't be displayed.": "이 창을 표시할 수 없습니다.",
+  "Swedish": "스웨덴어",
+  "Swedish speech model": "스웨덴어 음성 모델",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "Pianissimo는 스웨덴어를 더 정확하게 인식하고, 직접 입력한 단어를 입력한 그대로 표기합니다. 이 컴퓨터에서 실행됩니다.",
+  "This computer is too slow for the Swedish speech model.": "이 컴퓨터는 스웨덴어 음성 모델을 실행하기에 너무 느립니다."
 }

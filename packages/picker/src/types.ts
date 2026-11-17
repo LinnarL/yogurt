@@ -77,6 +77,22 @@ export interface CatalogFile {
   bytes: number
 }
 
+/**
+ * The Swedish speech model (Pianissimo, ONNX files in one folder), an extra download picked in Settings → Language.
+ * Unlike the whisper models it is several files, run by onnxruntime on the processor.
+ */
+export interface CatalogSpeechSv {
+  id: string
+  name: string
+  license: string
+  /** which build of the model the files are (int8, fp16...) */
+  quant: string
+  sizeGB: number
+  bytes: number
+  minMemGB: number
+  files: CatalogFile[]
+}
+
 /** The whisper-server program Yogurt builds itself */
 export interface CatalogBinary {
   id: string
@@ -98,6 +114,8 @@ export interface Catalog {
   asr: CatalogAsr[]
   whisperServer: CatalogBinary
   embedding: CatalogEmbedding
+  /** left out in older catalogs: Swedish is then read by whisper */
+  speechSv?: CatalogSpeechSv
 }
 
 export interface AsrChoice {

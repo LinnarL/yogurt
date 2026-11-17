@@ -10,6 +10,7 @@ import { applyLanguage } from '../i18n'
 import { flushOpenNotes } from '../noteAutosave'
 import { Jargon } from '../components/Jargon'
 import { SpokenSetting } from '../components/SpokenSetting'
+import { SwedishModelSetting } from '../components/SwedishModel'
 import { useScrollMemory } from '../useScrollMemory'
 import { appShortcuts } from '../components/Shortcuts'
 import { CalendarSettings } from '../components/CalendarSettings'
@@ -159,6 +160,7 @@ export function Settings({ revision = 0, focus }: { revision?: number; focus?: s
             <AppLanguage />
             <SummaryLanguage />
             <SpokenSetting />
+            <SwedishModelSetting />
             <Jargon />
           </div>
 

@@ -702,5 +702,9 @@
   "Waiting for Yogurt AI to download": "Aguardando o download do Yogurt AI",
   "Stop summary": "Parar resumo",
   "Summary stopped.": "Resumo interrompido.",
-  "This window couldn't be displayed.": "Não foi possível exibir esta janela."
+  "This window couldn't be displayed.": "Não foi possível exibir esta janela.",
+  "Swedish": "Sueco",
+  "Swedish speech model": "Modelo de fala em sueco",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "O Pianissimo entende sueco com mais precisão e escreve suas próprias palavras do jeito que você as digitou. Ele roda neste computador.",
+  "This computer is too slow for the Swedish speech model.": "Este computador é lento demais para o modelo de fala em sueco."
 }

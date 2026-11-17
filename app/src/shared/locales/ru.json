@@ -714,5 +714,9 @@
   "Waiting for Yogurt AI to download": "Ожидание загрузки Yogurt AI",
   "Stop summary": "Остановить сводку",
   "Summary stopped.": "Создание сводки остановлено.",
-  "This window couldn't be displayed.": "Не удалось отобразить это окно."
+  "This window couldn't be displayed.": "Не удалось отобразить это окно.",
+  "Swedish": "Шведский",
+  "Swedish speech model": "Модель речи для шведского",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "Pianissimo точнее распознаёт шведский и пишет ваши собственные слова так, как вы их ввели. Работает на этом компьютере.",
+  "This computer is too slow for the Swedish speech model.": "Этот компьютер слишком медленный для модели речи для шведского."
 }

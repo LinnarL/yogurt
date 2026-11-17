@@ -644,5 +644,9 @@
   "Waiting for Yogurt AI to download": "Đang chờ tải Yogurt AI",
   "Stop summary": "Dừng tóm tắt",
   "Summary stopped.": "Đã dừng tóm tắt.",
-  "This window couldn't be displayed.": "Không thể hiển thị cửa sổ này."
+  "This window couldn't be displayed.": "Không thể hiển thị cửa sổ này.",
+  "Swedish": "Tiếng Thụy Điển",
+  "Swedish speech model": "Mô hình giọng nói tiếng Thụy Điển",
+  "Pianissimo reads Swedish more accurately, and spells your own words the way you typed them. It runs on this computer.": "Pianissimo hiểu tiếng Thụy Điển chính xác hơn và viết các từ của riêng bạn đúng như bạn đã nhập. Nó chạy trên máy tính này.",
+  "This computer is too slow for the Swedish speech model.": "Máy tính này quá chậm đối với mô hình giọng nói tiếng Thụy Điển."
 }
