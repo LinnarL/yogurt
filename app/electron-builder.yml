@@ -4,9 +4,11 @@ copyright: Copyright © 2026 Frigade
 # GitHub Releases: every v* tag builds Mac, Windows and Linux (.github/workflows/release.yml).
 # Fixed file names, so releases/latest/download/Yogurt-mac-arm64.dmg (and the Windows and Linux ones) point at the newest.
 # Installed copies update from the same release (latest-mac.yml, latest.yml, latest-linux.yml; src/main/updates.ts).
+# This fork publishes (and updates from) its own releases, so an installed copy is not replaced by the original's
+# builds, which have no Swedish model. To follow the original again, set owner back to FrigadeHQ.
 publish:
   provider: github
-  owner: FrigadeHQ
+  owner: LinnarL
   repo: yogurt
   releaseType: release
 extraMetadata:
@@ -53,6 +55,8 @@ asarUnpack:
   # the notes model's engine loads native binaries; they can't run from inside the asar archive
   - "**/node_modules/node-llama-cpp/**"
   - "**/node_modules/@node-llama-cpp/**"
+  # the Swedish speech model's runtime (src/main/asr/pianissimo): native files that can't run from inside the archive
+  - "**/node_modules/onnxruntime-node/**"
 mac:
   # a platform's files list replaces the one above, so it repeats it
   files:
@@ -61,6 +65,8 @@ mac:
     # this Mac build only needs the Apple Silicon engine binaries
     - "!**/node_modules/@node-llama-cpp/{linux,win,mac-x64}*/**"
     - "!**/node_modules/node-llama-cpp/bins/{linux,win,mac-x64}*/**"
+    - "!**/node_modules/onnxruntime-node/bin/napi-v6/{linux,win32}/**"
+    - "!**/node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/**"
   artifactName: Yogurt-mac-${arch}.${ext}
   target:
     - target: dmg
@@ -99,6 +105,8 @@ win:
     # this Windows build only needs the x64 Windows engine binaries
     - "!**/node_modules/@node-llama-cpp/{linux,mac,win-arm64}*/**"
     - "!**/node_modules/node-llama-cpp/bins/{linux,mac,win-arm64}*/**"
+    - "!**/node_modules/onnxruntime-node/bin/napi-v6/{linux,darwin}/**"
+    - "!**/node_modules/onnxruntime-node/bin/napi-v6/win32/arm64/**"
   # added to the extra resources above (unlike files, these merge): the word list for lowercase respelling (scripts/native.mjs; a Mac has its own)
   extraResources:
     - { from: resources/dict, to: dict }
@@ -123,6 +131,8 @@ linux:
     # this Linux build only needs the x64 Linux engine binaries
     - "!**/node_modules/@node-llama-cpp/{mac,win,linux-arm,linux-riscv}*/**"
     - "!**/node_modules/node-llama-cpp/bins/{mac,win,linux-arm,linux-riscv}*/**"
+    - "!**/node_modules/onnxruntime-node/bin/napi-v6/{darwin,win32}/**"
+    - "!**/node_modules/onnxruntime-node/bin/napi-v6/linux/arm64/**"
   # the default comes from the package name, which isn't a good file name
   executableName: yogurt
   # added to the extra resources above (unlike files, these merge): the word list for lowercase respelling (scripts/native.mjs; a Mac has its own)

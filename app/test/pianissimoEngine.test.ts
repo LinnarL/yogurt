@@ -28,6 +28,25 @@ function readWav(buf: Buffer): Float32Array {
 /** what is said, without capitals, commas and full stops, to compare with the plain text of a reference */
 const plain = (s: string) => s.toLowerCase().replace(/[.,?!]/g, '').replace(/\s+/g, ' ').trim()
 
+/** the bundled speed-check clip (English): the model need not understand it, only run through it, fast */
+describe.skipIf(!MODEL)('Pianissimo, the real model, on the bundled clip', () => {
+  it('runs through a clip faster than it plays, with words in time order', async () => {
+    const modName = 'onnxruntime-node'
+    const engine = await loadEngine({ dir: MODEL!, ort: (await import(/* @vite-ignore */ modName)) as Ort })
+    try {
+      const clip = readWav(readFileSync(join(__dirname, '../resources/speed/clip.wav')))
+      await engine.recognize(clip.subarray(0, 3 * 16000))
+      const t0 = performance.now()
+      const r = await engine.recognize(clip)
+      const rtf = (performance.now() - t0) / 1000 / (clip.length / 16000)
+      expect(r.words.length).toBeGreaterThan(5)
+      r.words.forEach((w, i) => { if (i) expect(w.startMs).toBeGreaterThanOrEqual(r.words[i - 1].startMs) })
+      // the app keeps the model only where this is at most 0.5; a CI runner has fewer cores than a laptop, so the bar here is the same
+      expect(rtf).toBeLessThan(0.5)
+    } finally { await engine.close() }
+  }, 120_000)
+})
+
 describe.skipIf(!MODEL || !CLIPS)('Pianissimo, the real model', () => {
   let engine: Engine
   const refs = CLIPS ? (JSON.parse(readFileSync(join(CLIPS, 'refs.json'), 'utf8')) as Record<string, string>) : {}

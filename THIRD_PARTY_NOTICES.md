@@ -5,7 +5,7 @@ Yogurt is MIT licensed (see [LICENSE](LICENSE)). It includes or uses third-party
 - Licence texts for bundled and statically linked code are in [app/resources/licenses](app/resources/licenses). Installers ship them in a `licenses` folder.
   - Fonts: Bricolage Grotesque (OFL).
   - UI: Base UI, Motion, Hugeicons, and `@animate-ui/react` (MIT + Commons Clause, not covered by Yogurt's MIT licence).
-  - Speech: whisper.cpp / ggml, Silero VAD, cpp-httplib, nlohmann/json.
+  - Speech: whisper.cpp / ggml, Silero VAD, cpp-httplib, nlohmann/json, ONNX Runtime (for the Swedish model).
   - Audio recorders: libopus and the `ogg` crate (BSD-3-Clause).
   - Windows and Linux: the NVIDIA CUDA runtime inside node-llama-cpp's CUDA backends, and the web2 word list.
 - The app's JavaScript dependencies are listed in `LICENSES.txt`, generated at build time next to the renderer bundle (`out/renderer`) and the main-process bundle (`out/main`).
@@ -16,5 +16,6 @@ Yogurt doesn't ship any models in this repo or the installers. It downloads them
 
 - Gemma 4 (E2B, E4B, 26B A4B), Qwen3 1.7B and gpt-oss (20B, 120B): Apache-2.0.
 - Whisper (speech to text) and Silero VAD (voice detection): MIT.
+- Pianissimo (Swedish speech to text, an optional download; a fine-tune of NVIDIA Parakeet TDT 0.6B v3): CC BY 4.0, see [app/resources/licenses/pianissimo-CC-BY-4.0.txt](app/resources/licenses/pianissimo-CC-BY-4.0.txt). The phrase boosting is a port of NVIDIA NeMo's boosting tree (Apache-2.0).
 - EmbeddingGemma 300M: provided under and subject to the [Gemma Terms of Use](https://ai.google.dev/gemma/terms).
 

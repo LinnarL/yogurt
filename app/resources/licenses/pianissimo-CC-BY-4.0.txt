@@ -1,0 +1,15 @@
+Pianissimo (Swedish speech model) - attribution
+
+Yogurt can download "Pianissimo" (KlangAI/pianissimo-sv, ONNX files from KlangAI/pianissimo-sv-onnx) from Hugging Face
+when you turn it on in Settings -> Language. The model is not part of the installer.
+
+- Pianissimo is made by KlangAI and licensed under Creative Commons Attribution 4.0 International (CC BY 4.0):
+  https://creativecommons.org/licenses/by/4.0/
+  Model page: https://huggingface.co/KlangAI/pianissimo-sv
+- It is a fine-tune of NVIDIA's Parakeet TDT 0.6B v3 (also CC BY 4.0): https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3
+- Changes made by Yogurt: none to the model. The files are downloaded as published (pinned to a commit and checked
+  against their SHA-256 in catalog/catalog.json) and run with ONNX Runtime.
+
+Phrase boosting (app/src/main/asr/pianissimo/boost.ts) is a TypeScript port of KlangAI's phrase_boost.py, itself a port of
+NVIDIA NeMo's GPU-PB boosting tree (ContextGraph and GPUBoostingTreeModel, NeMo 2.7), licensed under the Apache License 2.0:
+https://github.com/NVIDIA-NeMo/NeMo/blob/main/LICENSE

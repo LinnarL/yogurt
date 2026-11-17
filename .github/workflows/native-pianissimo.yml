@@ -1,0 +1,50 @@
+# The Swedish speech model (Pianissimo) run by onnxruntime-node on a runner's CPU: downloads the model the catalog pins
+# (checked against its sha256), then runs the engine tests with the real model (test/pianissimoEngine.test.ts): it reads
+# the bundled clip faster than it plays, and its words come in order. Windows and Linux, the two where it ships first.
+name: Pianissimo (Swedish speech)
+
+on:
+  push:
+    branches: [main, 'feat/pianissimo-*']
+    paths:
+      - app/src/main/asr/pianissimo/**
+      - app/test/pianissimo*.test.ts
+      - app/scripts/pianissimo-download.mjs
+      - catalog/catalog.json
+      - .github/workflows/native-pianissimo.yml
+  workflow_dispatch:
+
+concurrency:
+  group: native-pianissimo-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  engine:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-22.04]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: The model (about 660 MB), cached by the catalog's pins
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/pianissimo
+          key: pianissimo-${{ hashFiles('catalog/catalog.json') }}
+      - name: Download and verify
+        run: node app/scripts/pianissimo-download.mjs "${{ runner.temp }}/pianissimo"
+      - name: Engine tests with the real model
+        env:
+          PIANISSIMO_MODEL: ${{ runner.temp }}/pianissimo
+        run: pnpm -C app exec vitest run test/pianissimo
